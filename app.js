@@ -26,7 +26,10 @@ const upload = multer({
 const personSchema = new mongoose.Schema({
     name: String,
     email: String,
-    password: String
+    password: String,
+    birthday: Date,
+    gender: String,
+    phone: String
 });
 
 const Person = mongoose.model('person',personSchema);
@@ -73,13 +76,19 @@ app.post('/register',function(req,res) {
     var lname = req.body.lname;
     var email = req.body.mailid;
     var pass = req.body.pass;
+    var birth = req.body.birth;
+    var gender = req.body.gender;
+    var phone = req.body.phone;
     
-    if(fname&&lname&&email&&pass) {
+    if(fname&&lname&&email&&pass&&birth&&gender&&phone) {
         bcrypt.hash(pass,saltRounds,function(err,hash) {
             const newP = new Person({
                 name: fname+' '+lname,
                 email: email,
-                password: hash
+                password: hash,
+                birthday: birth,
+                gender: gender,
+                phone: phone
             });
 
             newP.save();

@@ -293,8 +293,8 @@ h6 {
 
 .reg_btn:hover {
   
-  background-color:  #FB6B90;
-  color: #cc0e74;
+  background-color:  white;
+  color:  #FB4570;
 }
 
 .btn--radius {
@@ -678,4 +678,51 @@ input {
   .card-4 .card-body {
     padding: 50px 40px;
   }
+}
+
+
+/* ==========================================================================
+#TextArea
+========================================================================== */
+
+.textarea {
+     width: 100%;
+     height: 100%;
+     background-color: transparent;
+     border: 0;
+     outline: none;
+     padding: 2px;
+     font-size: 1.2rem;
+}
+
+.upload_cl {
+     position: relative;
+     width: 100%;
+     border: 3px dashed white;
+}
+
+.upload_cl input {
+  width: 100%;
+  height: 75px;
+  cursor: pointer;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.upload_cl p {
+  width: 100%;
+  padding: 10px;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.padd {
+  padding: 25px 50px;
 }

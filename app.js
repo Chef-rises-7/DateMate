@@ -8,7 +8,7 @@ const path = require('path');
 const saltRounds = 10;
 
 app.set('view engine','ejs');
-app.use(express.static('public'));
+app.use('/static', express.static(__dirname + "/public"))
 app.use(bodyP.urlencoded({extended: true}));
 mongoose.connect("mongodb://localhost:27017/PersonDB",{ useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false });
 
@@ -29,20 +29,12 @@ const personSchema = new mongoose.Schema({
     password: String,
     birthday: Date,
     gender: String,
-    phone: String
-});
-
-
-const infoSchema = new mongoose.Schema({
-    email: String,
+    phone: String,
     image: String,
     address: String,
-    contact: String,
     hobbies: String
 });
 
-
-const Info = mongoose.model('info',infoSchema);
 const Person = mongoose.model('person',personSchema);
 
 
@@ -100,18 +92,14 @@ app.post('/register',function(req,res) {
                     password: hash,
                     birthday: birth,
                     gender: gender,
-                    phone: phone
+                    phone: phone,
+                    image: "",
+                    address: "",
+                    hobbies: ""
                 });
     
                 newP.save();
             })
-            const newInfo = new Info({
-                email: email,
-                image: "",
-                address: "",
-                contact: phone,
-                hobbies: ""
-            });
 
             const copy_ele =  {
                 name: fname+' '+lname,
@@ -121,16 +109,11 @@ app.post('/register',function(req,res) {
                 phone: phone
             }
 
-            newInfo.save();
             res.render('user_page',{ele: copy_ele});
         }
     })
 })
 
-
-app.get('/user',function(req,res) {
-    res.render("user_page");
-});
 
 
 app.get('/update/:email',function(req,res) {
@@ -143,12 +126,12 @@ app.post('/update/:email',upload,function(req,res) {
     const address = req.body.address;
 
     const update_dict = {
-        image: "helooo frands",
+        image: req.file.filename,
         address: address,
         hobbies: hobbies
     };
 
-    Info.findOneAndUpdate({email:mail},update_dict,function(err,ele) {
+    Person.findOneAndUpdate({email:mail},update_dict,function(err,ele) {
         if(err) {
             console.log(err);
         } else {

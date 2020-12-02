@@ -141,3 +141,17 @@ body {
     transform: translateX(-50%);
 
 }
+
+.container {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 40%;
+    height: 600px;
+    background-color:  #FB4570;
+    padding: 15px 20px;
+}

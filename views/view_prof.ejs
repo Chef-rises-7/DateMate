@@ -4,40 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/static/card.css">
 </head>
 <body>
-    <div>
-        <div>
-            <img src="" alt="User Photo">
-        </div>
-        <div><h1>Name</h1></div>
-        <div><h1>place , India</h1></div>
-        <div>
-            <div>
-                contact:
-            </div>
-            <div>
-                <p> 123
-                </p>
-            </div>
 
-            <div>
-                <div>
-                    Address:
-                </div>
-                <div>
-                    <p>
-                        harish is the great in the world no one can beat him he is purely concentrating on competative coding.
-                    </p>
-                </div>
+    <div class="card">
+        <div class="img_holder">
+            <div class="circle">
+            <img src="<%= ele.image %>" alt="prof pic">
+        </div>
+        </div>
+        <div class="info">
+            <div class="mid">
+                <%= ele.name %>
+            </div>
+        <div class="mid ext">
+            <img src="https://img.icons8.com/android/40/000000/marker.png"/>
+            India
+        </div>
+        <div class="mid">
+            <%= ele.hobbies %>
+        </div>
+        <div class="end">
+            <div class="end_ele">
+                <img src="https://img.icons8.com/ios/40/000000/birth-date.png"/>
+                <%= ele.birthday %>
+            </div>
+            <div class="end_ele">
+                <img src="https://img.icons8.com/dotty/40/000000/phone.png"/>
+                <%= ele.phone %>
             </div>
         </div>
-        <div></div>
-        
-        
-        
-
     </div>
+    </div>
+    
 </body>
 </html>

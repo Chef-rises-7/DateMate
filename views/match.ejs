@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match</title>
+    <link rel="stylesheet" href="/static/user_style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <img src="https://img.icons8.com/wired/64/000000/two-hearts.png"/>
+            DateMate</h1>
+        <ul class="first_h">
+            <li>
+                <a class="prof_a" href="/view_prof/<%= ele.email %>">Profile</a>
+            </li>
+            <li class="profile">
+                <img class="header_img" src="<%= ele.image %>" alt="tangiro">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="/update/<%= ele.email %>">Update</a>
+                        </li>
+                        <li>
+                            <a href="/profile">Find Match</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="card">
+        </div>
+    </div>
+
+
+    <script>
+        const drop_down = document.querySelector('.profile div');
+        document.querySelector('.header_img').addEventListener('mouseover',function() {
+            drop_down.style.display='block';
+        });
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.header_img')) {
+                drop_down.style.display='none';
+            }
+        }
+    </script>
+</body>
+</html>

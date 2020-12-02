@@ -27,7 +27,7 @@ const personSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    birthday: Date,
+    birthday: String,
     gender: String,
     phone: String,
     image: String,
@@ -54,6 +54,7 @@ app.post('/login',function(req,res) {
         if(err) {
             console.log(err);
         } else {
+            if(ele) {
             bcrypt.compare(pass,ele.password,function(err,result) {
                 if(result===true) {
                     res.render("user_page",{ele: ele});
@@ -61,6 +62,8 @@ app.post('/login',function(req,res) {
                     res.send("try aggain password Incorrect");
                 }
             })
+
+        } else console.log("Please register before logging in.");
 
         }
     })
@@ -93,7 +96,7 @@ app.post('/register',function(req,res) {
                     birthday: birth,
                     gender: gender,
                     phone: phone,
-                    image: "",
+                    image: "/static/uploads/pink.jpg",
                     address: "",
                     hobbies: ""
                 });
@@ -106,7 +109,8 @@ app.post('/register',function(req,res) {
                 email: email,
                 birthday: birth,
                 gender: gender,
-                phone: phone
+                phone: phone,
+                image: "/static/uploads/pink.jpg",
             }
 
             res.render('user_page',{ele: copy_ele});
@@ -126,7 +130,7 @@ app.post('/update/:email',upload,function(req,res) {
     const address = req.body.address;
 
     const update_dict = {
-        image: req.file.filename,
+        image: "/static/uploads/" + req.file.filename,
         address: address,
         hobbies: hobbies
     };
@@ -142,7 +146,25 @@ app.post('/update/:email',upload,function(req,res) {
 });
 
 app.get('/view_prof/:email',function(req,res) {
-    res.render('view_prof');
+    Person.findOne({email: req.params.email},function(err,ele) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(ele);
+            res.render('view_prof',{ele: ele});
+        }
+    })
+})
+
+
+app.get('/match/:email',function(req,res) {
+    Person.findOne({email: req.params.email},function(err,ele) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('match',{ele: ele});
+        }
+    })
 })
 
 

@@ -23,6 +23,21 @@ const upload = multer({
     storage: Storage
 }).single('file');
 
+
+const match_list = {
+    name: String,
+    birthday: String,
+    link: String,
+    image: String
+};
+
+const test_list = {
+    name: "",
+    birthday: "",
+    link: "",
+    image: ""
+};
+
 const personSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -32,10 +47,25 @@ const personSchema = new mongoose.Schema({
     phone: String,
     image: String,
     address: String,
-    hobbies: String
+    hobbies: String,
+    flag: Number,
+    arr: [match_list]
+
 });
 
 const Person = mongoose.model('person',personSchema);
+
+function remove_dup(data) {
+    let unq = [];
+    let ans = [];
+    data.forEach(function(ele) {
+        if(!unq.includes(ele.name)) {
+            unq.push(ele.name);
+            ans.push(ele);
+        }
+    });
+    return ans;
+};
 
 
 app.get('/',function(req,res) {
@@ -98,7 +128,9 @@ app.post('/register',function(req,res) {
                     phone: phone,
                     image: "/static/uploads/pink.jpg",
                     address: "",
-                    hobbies: ""
+                    hobbies: "",
+                    flag: 0,
+                    arr: [test_list]
                 });
     
                 newP.save();
@@ -139,6 +171,8 @@ app.post('/update/:email',upload,function(req,res) {
         if(err) {
             console.log(err);
         } else {
+            ele.flag = 1;
+            ele.save();
             console.log(ele);
         }
     })
@@ -166,6 +200,83 @@ app.get('/match/:email',function(req,res) {
         }
     })
 })
+
+app.post('/match/:email',function(req,res) {
+
+    Person.findOne({email: req.params.email}, function(err,ele) {
+        if(ele.gender === "M" && ele.flag===1) {
+        Person.find({gender: "F",flag: 1}, function(erro,eles) {
+            var len = eles.length;
+            var rand = Math.floor((Math.random())*(len));
+            const sender = {
+                name: ele.name,
+                birthday: ele.birthday,
+                link: "/view_prof/"+ele.email,
+                image: ele.image
+            };
+
+            const receiver = {
+                name: eles[rand].name,
+                birthday: eles[rand].birthday,
+                link: "/view_prof/"+eles[rand].email,
+                image: eles[rand].image
+            };
+
+            ele.flag = 1;
+            eles[rand].flag = 1;
+
+
+            eles[rand].arr.push(sender);
+            eles[rand].arr = remove_dup(eles[rand].arr);
+
+
+            ele.arr.push(receiver);
+            ele.arr = remove_dup(ele.arr);
+            
+            ele.save();
+            eles[rand].save();
+            console.log(eles[rand].arr);
+        
+        })
+
+    } else if(ele.gender === "F" && ele.flag===1) {
+        Person.find({gender: "M",flag: 1}, function(erro,eles) {
+            var len = eles.length;
+            var rand = Math.floor((Math.random())*(len));
+            const sender = {
+                name: ele.name,
+                birthday: ele.birthday,
+                link: "/view_prof/"+ele.email,
+                image: ele.image
+            };
+
+            const receiver = {
+                name: eles[rand].name,
+                birthday: eles[rand].birthday,
+                link: "/view_prof/"+eles[rand].email,
+                image: eles[rand].image
+            };
+
+
+            eles[rand].arr.push(sender);
+            eles[rand].arr = remove_dup(eles[rand].arr);
+
+
+            ele.arr.push(receiver);
+            ele.arr = remove_dup(ele.arr);
+            
+            ele.save();
+            eles[rand].save();
+            console.log(eles[rand].arr);
+        
+        })
+
+    }
+
+        res.render('match',{ele: ele});
+    })
+
+});
 
 
 app.listen(3000,function(err) {

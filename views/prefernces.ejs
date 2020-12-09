@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <style>
+        
+body {
+  font-family: "Montserrat";
+  text-align: center;
+  background-color: #ef8172;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat-Bold";
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+
+.big-heading {
+  font-family: "Montserrat-Black";
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+/* Containers */
+
+.container-fluid{
+  padding: 7% 15%;
+}
+
+/* Sections */
+
+.colored-section {
+    margin-top: 100px;
+  background-color: #ff4c68;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat-Light";
+}
+
+/* Buttons */
+
+.download-button {
+  margin: 5% 3% 5% 0;
+}
+
+/* Title Section */
+
+#title {
+  background-color: #ff4c68;
+  color: #fff;
+  text-align: left;
+}
+
+#title .container-fluid {
+  padding: 3% 15% 7%;
+}
+
+/* Title Image */
+
+.title-image {
+  width: 60%;
+  transform: rotate(25deg);
+  position: absolute;
+  right: 30%;
+}
+
+.p-t-15 {
+  padding-top: 15px;
+}
+
+.btn {
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 50px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+
+.reg_btn {
+  width: 30%;
+  border-radius: 3px;
+  background-color:  #FB4570;
+  color: white;
+}
+
+.reg_btn:hover {
+  
+  background-color:  white;
+  color:  #FB4570;
+}
+
+/* Features Section */
+
+#features {
+  position: relative;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature-box {
+  padding: 4.5%;
+}
+
+.icon {
+  color: #ef8172;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #ff4c68;
+}
+
+a {
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+}
+
+/* Testimonial Section */
+
+#testimonials {
+  background-color: #ef8172;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+
+#press {
+  background-color: #ef8172;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Pricing Section */
+
+#pricing {
+  padding: 100px;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.pricing-column {
+  padding: 3% 2%;
+}
+
+/* CTA Section */
+
+
+/* Footer Section */
+
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+@media (max-width: 1028px) {
+
+  #title {
+    text-align: center;
+  }
+
+  .title-image {
+    position: static;
+    transform: rotate(0);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <section class="colored-section" id="testimonials">
+
+        <div id="testimonial-carousel" class="carousel slide" data-ride="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active container-fluid">
+              <h2 class="testimonial-text">How do you prefer to communicate?</h2>
+              <div>
+                  <input type="radio" name="f"> <span style="font-size: 2rem;">Chat</span>
+              </div>
+              <div>
+                <input type="radio" name="f"> <span style="font-size: 2rem;">Call</span>
+              </div>
+            </div>
+            <div class="carousel-item container-fluid">
+              <h2 class="testimonial-text">Do you prefer weeknight dates or weekend dates?</h2>
+              <div>
+                <input type="radio" name="f"> <span style="font-size: 2rem;">Weeknight dates</span>
+            </div>
+            <div>
+              <input type="radio" name="f"> <span style="font-size: 2rem;">Weekend dates</span>
+            </div>
+            </div>
+            <div class="carousel-item container-fluid">
+                <h2 class="testimonial-text">What are you looking to get out of dating apps?</h2>
+                <div>
+                  <input type="radio" name="f"> <span style="font-size: 2rem;">Casual fling</span>
+              </div>
+              <div>
+                <input type="radio" name="f"> <span style="font-size: 2rem;">Serious relationship</span>
+              </div>
+              </div>
+              <div class="carousel-item container-fluid">
+                <h2 class="testimonial-text">Do you prefer books or movies?</h2>
+                <div>
+                  <input type="radio" name="f"> <span style="font-size: 2rem;">Books</span>
+              </div>
+              <div>
+                <input type="radio" name="f"> <span style="font-size: 2rem;">Movies</span>
+              </div>
+              </div>
+              <div class="carousel-item container-fluid">
+                <h2 class="testimonial-text">Which would you prefer more?</h2>
+                <div>
+                  <input type="radio" name="f"> <span style="font-size: 2rem;">Watching T.V.</span>
+              </div>
+              <div>
+                <input type="radio" name="f"> <span style="font-size: 2rem;">Travelling</span>
+              </div>
+              </div>
+          </div>
+          <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+    
+      </section>
+
+      <div class="p-t-15">
+        <a href="/match/<%= ele.email %>" class="btn reg_btn">Submit</a>
+    </div>
+
+</body>
+</html>

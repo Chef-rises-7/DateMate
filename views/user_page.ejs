@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="/static/user_style.css">
 </head>
 <body>
@@ -13,7 +13,10 @@
             DateMate</h1>
         <ul class="first_h">
             <li>
-                <a class="prof_a" href="/view_prof/<%= ele.email %>">Profile</a>
+                <a class="prof_a" href="/preferences/<%= ele.email %>" style="font-weight: bolder;">Preferences</a>
+            </li>
+            <li>
+                <a class="prof_a" href="/view_prof/<%= ele.email %> " style="font-weight: bolder;">Profile</a>
             </li>
             <li class="profile">
                 <img class="header_img" src="<%= ele.image %>" alt="tangiro">
@@ -25,6 +28,9 @@
                         <li>
                             <a href="/match/<%= ele.email %>">Find Match</a>
                         </li>
+                        <li>
+                            <a href="/friend/<%= ele.email %>">Find Friend</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -34,7 +40,7 @@
 
     <div class="container">
         <div class="welcome">
-            <h1>Welcome</h1>
+            <h1 style="font-weight: bolder;color: #191970; font-size: 4rem;">Welcome</h1>
         </div>
 
     </div>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat With Date</title>
+    <link rel="stylesheet" href="/static/chat.css">
+</head>
+<body>
+    <div class="container">
+        <div class="disp_mssg">
+            <div class="chat">
+                
+
+
+        </div>
+    </div>
+    <div class="form_bot">
+        <form class="mess_form">
+            <input type="text" id="message" name="message">
+            <button  type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+       
+        const mess_form = document.querySelector('.mess_form');
+        const message = document.getElementById("message");
+        const name = prompt("What is your nickname? ")
+
+        socket.emit('new user', name );
+
+        socket.on('chat-message', dict => {
+            console.log(dict.message);
+            console.log(dict.name);
+            add(dict);
+        });
+
+        mess_form.addEventListener('submit', e => {
+            e.preventDefault();
+            const mess = message.value;
+
+            socket.emit('send chat message',mess);
+            message.value = '';
+        });
+
+        function add(mssg) {
+            const new_ele = document.createElement('div');
+            const inner_f = document.createElement('div');
+            const inner_s = document.createElement('div');
+            const f_ele = document.createElement('p');
+            const s_ele = document.createElement('h3');
+
+            const cont = document.querySelector('.disp_mssg');
+            new_ele.classList.add('chat');
+            inner_f.classList.add('f');
+            inner_s.classList.add('s');
+
+            f_ele.innerHTML = mssg.name;
+            s_ele.innerHTML = mssg.message;
+
+            inner_f.append(f_ele);
+            inner_s.append(s_ele);
+            new_ele.append(inner_f);
+            new_ele.append(inner_s);
+            cont.append(new_ele);
+
+        }
+
+        
+    </script>
+</body>
+</html>

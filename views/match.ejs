@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match</title>
+    <title>Find Match</title>
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="/static/user_style.css">
 </head>
 <body>
@@ -13,7 +22,10 @@
             DateMate</h1>
         <ul class="first_h">
             <li>
-                <a class="prof_a" href="/view_prof/<%= ele.email %>">Profile</a>
+                <a class="prof_a" href="/preferences/<%= ele.email %>" style="font-weight: bolder;">Preferences</a>
+            </li>
+            <li>
+                <a class="prof_a" href="/view_prof/<%= ele.email %>" style="font-weight: bolder;">Profile</a>
             </li>
             <li class="profile">
                 <img class="header_img" src="<%= ele.image %>" alt="tangiro">
@@ -25,6 +37,9 @@
                         <li>
                             <a href="/profile">Find Match</a>
                         </li>
+                        <li>
+                            <a href="/friend/<%= ele.email %>">Find Friend</a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -33,11 +48,60 @@
     </div>
 
     <div class="container">
+        
         <div class="card">
+
+            
+
+            <form action="/match/<%= ele.email %>" method="POST">
+                <div class="p-t-15">
+                <button class="btn reg_btn btn--radius-1 " type="submit">Find Match</button>
+            </div>
+            </form>
+            
         </div>
     </div>
+    <div class="container">
+    <div class="card">
+        <% (ele.arr).forEach(function(eles,i) { %>
+            <% if(i>0) { %>
+            <div class="card_ele">
+                <div class="img_holder">
+                    <img src="<%= eles.image %>" alt="profpic">
+                </div>
+                <div class="info_holder">
+                    <div class="name_holder">
+                        <h1> <%= eles.name %> </h1>
+                        <p> <%= eles.birthday %> </p>
+                    </div>
+                    <div class="venue_split">
+                        <div class="link_storage">
+                    <div class="link_holder">
+                        <a href="<%= eles.link %>">Click Here</a>  <span style="font-size: 0.8rem;">to visit profile.</span> 
+                    </div>
+                    <div class="link_holder">
+                        <a href="/chat">Click Here</a>  <span style="font-size: 0.8rem;">to chat.</span> 
+                    </div>
+                </div>
+                <div class="venue_storage">
+                    <div>
+                        Venue:
+                    </div>
+                    <div>
+                        <a href="<%= eles.ven_link %>"> <%= eles.venue %> </a>
+                    </div>
+                </div>
+                </div>
+                    
+                </div>
+            </div>
+            <% } %>
 
+        <% }) %>
 
+    </div>
+
+</div>
     <script>
         const drop_down = document.querySelector('.profile div');
         document.querySelector('.header_img').addEventListener('mouseover',function() {

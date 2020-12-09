@@ -5,6 +5,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("tc_2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 
 }
 
@@ -60,8 +63,15 @@ body {
     font-size: 2rem;
     display: flex;
     justify-content: center;
+    width: 100%;
     align-items: center;
 }
+
+.mid p {
+    width: 100%;
+}
+
+
 
 .end {
     margin: 25px 0;

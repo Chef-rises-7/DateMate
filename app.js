@@ -201,8 +201,10 @@ app.post('/update/:email',upload,function(req,res) {
             ele.flag = 1;
             ele.save();
             console.log(ele);
+            res.render('user_page',{ele: ele});
         }
     })
+
 });
 
 app.get('/view_prof/:email',function(req,res) {
